@@ -1,0 +1,345 @@
+@import vars
+@import fonts
+@import libs
+
+::placeholder
+	color: #666
+
+::selection
+	background-color: $accent
+	color: #fff
+
+input, textarea
+	outline: none
+	&:focus:required:invalid
+		border-color: red
+	&:required:valid
+		border-color: green
+
+body
+	font-size: 16px
+	min-width: 320px
+	position: relative
+	line-height: 1.65
+	font-family: 'Source Sans Pro', sans-serif
+	overflow-x: hidden
+	color: $text
+
+.g-container
+	max-width: 1110px
+	padding:
+		right: $gutter/2
+		left: $gutter/2
+	margin:
+		left: auto
+		right: auto
+
+.g-grid
+	display: grid
+	grid-gap: $gutter
+	grid-template-columns: 1fr 1fr
+	grid-template-areas: "left right"
+	> div:first-child
+		grid-area: left
+	> div:last-child
+		grid-area: right
+	+media-breakpoint-down(xs)
+		display: block
+		> div
+			padding: $gutter/2 0
+	
+//Обшие стили
+h1 
+	font-size: 57px
+	line-height: 105%
+	padding-bottom: 40px
+h3 
+	text-transform: uppercase
+	font-size: 22px
+	line-height: 28px
+.subtext
+	font-size: 14px
+	color: #77767E
+.btn 
+	border: 2px solid $accent
+	padding: 10px 20px
+	color: $accent
+	font-weight: bold
+	&:hover
+		color: #fff 
+		background: $accent
+		text-decoration: none
+
+//Шапка сайта
+.header
+	padding: 100px 0
+	&__top
+		display: flex
+		justify-content: space-between
+		font-weight: bold
+		a 
+		
+			&:hover 
+				text-decoration: none
+	&__logo
+		a
+			display: block
+			&:hover
+				background: linear-gradient(to right, #06f 0,#06f 40%,transparent 20%)
+		span 
+			vertical-align: middle
+			font-size: 1.4rem
+			background: $accent
+			padding: 4px 10px
+			color: #fff
+			
+	&__links
+		.header__link
+			margin-right: 50px
+			color: #000
+			&:hover
+				color: $accent
+
+
+
+//ссылки на страница сайта
+.pagination
+	margin: 100px 0
+	&__links
+		a 
+			display: inline-block
+			margin-right: 10px
+			// background: $accent
+			padding: 5px 15px
+			color: #000
+			font-weight: bold
+			&:hover
+				text-decoration: none
+				transition: all .25s ease
+				background: linear-gradient(0deg, rgba(0, 102, 255, 0.2), rgba(0, 102, 255, 0.2)), #f7f7fa
+			&.active
+				background: $accent
+				color: #fff
+
+//Таблица
+.table
+	&__row
+		display: grid
+		grid-template-columns: 45px 10fr repeat(3, minmax(55px, 1fr))
+		background: #f7f7ff
+		& > div 
+			border-right: 1px solid #D1CFD7
+			padding: 5px 8px
+			&:last-child
+				border-right: 0
+	&__number, &__buy, &__sell, &__hold
+		text-align: center
+			
+	&__wrap
+		border: 1px solid #D1CFD7
+		& > div:nth-child(odd)
+			background: #F7F7FA
+		& > div
+			background: #fff
+			&:hover 
+				background: rgba(0, 102, 255, 0.16)
+			&:first-child:hover
+				background: #F7F7FA
+			// padding: 5px 8px
+	&__name 
+		white-space: nowrap
+		overflow: hidden
+		text-overflow: ellipsis
+	.circle 
+		width: 10px
+		height: 10px
+		border-radius: 50%
+		display: inline-block
+		&-buy
+			background: #4CD964
+		&-sell 
+			background: #FF4E3D
+		&-hold
+			background: linear-gradient(180deg, #A5AAB7 0%, #848993 100%)
+
+	
+//Стиили для блока с новостями
+.news
+	margin: 100px 0
+	&__wrap 
+		display: flex
+		justify-content: space-between
+		align-items: center
+		margin-bottom: 20px
+	&__list
+		display: grid
+		grid-template-columns: 2fr 2fr 2fr 2fr
+		grid-template-rows: repeat(5, minmax(100px, 1fr))
+		grid-gap: 30px
+		& > div:first-child
+			grid-column: 1 / 2
+			grid-row: 1 / 3
+		& > div:nth-child(2)
+			grid-column: 2 / 4
+			grid-row: 1 / 4
+		& > div:nth-child(3)
+			grid-column: 4 / 5
+			grid-row: 1 /-1
+		& > div:nth-child(4)
+			grid-column: 1 / 2
+			grid-row: 3 / 6
+		& > div:nth-child(5)
+			grid-column: 2 /3
+			grid-row: 4/6
+		& > div:nth-child(6)
+			grid-column: 3/4
+			grid-row: 4/6
+	&__item 
+		background: #ccc
+		background-position: center center
+		background-size: cover
+		color: #fff
+		height: 100%
+		position: relative
+		display: flex
+		flex-direction: column
+		justify-content: flex-end
+		padding: 15px
+		overflow: hidden
+		&:hover
+			.news__link
+				top: 50%
+				position: absolute
+				transition: all .25s ease
+				font-weight: normal
+			&::before
+				display: block
+				
+		&::before
+			display: none
+			content: ''
+			width: 100%
+			height: 100%
+			position: absolute
+			top: 0
+			left: 0
+			background: linear-gradient(0deg, rgba(21, 85, 249, 0.8), rgba(21, 85, 249, 0.8))
+		h4
+			line-height: 25px
+			position: relative
+		p
+			padding: 0
+			margin: 0
+	&__link 
+		position: absolute
+		top: -50%
+		left: 50%
+		color: #fff 
+		border-color: #fff
+		padding: 10px
+		font-size: 12px
+		transform: translate(-50%, -50%)
+		&:hover
+			text-decoration: none
+			color: #fff
+			background: none
+	&__info 
+		color: rgba(255, 255, 255, 0.65)
+		display: flex
+		justify-content: space-between
+		font-size: 13px
+		position: relative
+.footer
+	background: $accent
+	color: #fff
+	padding: 100px 0 30px
+	.footer__social 
+		margin: 50px 0
+	&__social__links
+		padding: 0 
+		max-width: 347px
+		a 
+			color: #fff
+			margin-right: 25px
+			&:hover
+				opacity: .5	
+				transition: all .25s ease
+			&.social__email
+				border: 2px solid #fff
+				padding: 11px 28px
+				font-size: 14px
+				&:hover
+					text-decoration: none
+					background: #fff 
+					color: $accent
+					opacity: 1
+	&__logo 
+		display: flex
+		justify-content: space-between
+@media (max-width: 968px)
+	.news 
+		&__list
+			grid-template-columns: 1fr 1fr
+			grid-template-rows: repeat(3, 290px)
+			grid-gap: 30px
+			& > div:first-child
+				grid-column: auto
+				grid-row: auto
+			& > div:nth-child(2)
+				grid-column: auto
+				grid-row: auto
+			& > div:nth-child(3)
+				grid-column: auto
+				grid-row: auto
+			& > div:nth-child(4)
+				grid-column: auto
+				grid-row: auto
+			& > div:nth-child(5)
+				grid-column: auto
+				grid-row: auto
+			& > div:nth-child(6)
+				grid-column: auto
+				grid-row: auto
+@media (max-width: 568px)
+	body 
+		font-size: 14px
+	.header	
+		padding: 25px 0
+		font-size: 12px
+		&__top 
+			align-items: center
+		&__logo 
+			img
+				display: none
+		&__links
+			.header__link
+				margin-right: 10px
+	.news 
+		&__list
+			grid-template-columns: 1fr
+			grid-template-rows: repeat(6, 290px)
+			grid-gap: 30px
+	.news__wrap
+		align-items: flex-start
+		.btn 
+			margin-top: 15px
+	.btn 
+		padding: 6px 12px
+		font-size: 12px
+		line-height: 15px
+	.footer
+		padding: 30px 0
+		&__social__links
+			a
+				margin-right: 40px
+			.social__email
+				display: block
+				max-width: 175px
+				margin-bottom: 20px
+
+	.footer__logo
+		flex-direction: column
+		p 
+			margin-top: 20px
+	h1 
+		font-size: 24px
